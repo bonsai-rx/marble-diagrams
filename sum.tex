@@ -1,0 +1,40 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,inner sep=0pt] (0x0) at (1,0) {\scriptsize{$x_1$}};
+  \node[marble,circle,inner sep=0pt] (1x0) at (2,0) {\scriptsize{$x_2$}};
+  \node[marble,circle,inner sep=0pt] (2x0) at (3,0) {\scriptsize{$x_3$}};
+  \node[marble,circle,inner sep=0pt] (3x0) at (4,0) {\scriptsize{$x_4$}};
+  \node[draw=none,inner sep=0pt] (4x0) at (4.7,0.1) {\scriptsize{\boldmath$\ldots$}};
+  \node[marble,circle,inner sep=0pt] (5x0) at (5.4,0) {\scriptsize{$x_n$}};
+  \node[complete] (6x0) at (5.8,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {sum};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,inner sep=1pt] (5x2) at (5.8,0) {\scriptsize{$\sum\limits_{i=1}^{n} x_i$}};
+  \node[complete] (6x2) at (6.5,0) {};
+  \\
+};
+
+\draw [dash] (0x0) -- (0x0|-op.north);
+\draw [dash] (1x0) -- (1x0|-op.north);
+\draw [dash] (2x0) -- (2x0|-op.north);
+\draw [dash] (3x0) -- (3x0|-op.north);
+\draw [dash] (5x0) -- (5x0|-op.north);
+\draw [dash] (6x0) -- (6x0|-op.north);
+
+\draw [revdash] (5x2) -- (5x2|-op.south);
+\draw [revdash] (6x2) -- (6x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
