@@ -1,0 +1,41 @@
+% Marble Diagrams
+% 
+% (c) Gonçalo Lopes
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{rxmarbles}
+  [2016/01/10 v0.1 TikZ style package for drawing reactive extension marble diagrams]
+
+\RequirePackage{tikz}
+
+\makeatletter
+\pgfdeclareradialshading[tikz@ball]{ball}{\pgfqpoint{-10bp}{20bp}}{%
+ color(0bp)=(tikz@ball!10!white);
+ color(15bp)=(tikz@ball!60!white);
+ color(24bp)=(tikz@ball!90!black);
+ color(28bp)=(tikz@ball!80!black);
+ color(50bp)=(tikz@ball!70!black)}
+\makeatother
+
+\tikzset{
+ box/.style={draw,rectangle,right},
+ dash/.style={dashed,-triangle 45},
+ red/.style={ball color=red},
+ yellow/.style={ball color=yellow},
+ green/.style={ball color=green},
+ cyan/.style={ball color=cyan},
+ blue/.style={ball color=blue},
+ magenta/.style={ball color=magenta},
+ marble/.style={draw=black,shading=ball,ball color=white,thick,minimum size=4.5mm},
+ triangle/.style={regular polygon,regular polygon sides=3,rotate=180,scale=0.8,yshift=-0.7mm},
+ hexagon/.style={regular polygon,regular polygon sides=6},
+ complete/.style={draw=none,fill=none,font={$\vert$}}
+}
+
+\endinput
+%%
+%% End of file `mypackage.sty'.
