@@ -7,7 +7,7 @@
 
 \matrix[row sep=0.5cm]
 {
-  \draw [->] (0,0) -- (7,0);
+  \draw [time] (0,0) -- (7,0);
   \node[marble,circle,red] (0x0) at (1,0) {};
   \node[marble,diamond,yellow] (1x0) at (2,0) {};
   \node[marble,triangle,green] (2x0) at (3,0) {};
@@ -17,37 +17,27 @@
   \node[complete] (6x0) at (6.5,0) {};
   \\
   
-  \coordinate (0x1) at (1,0.35);
-  \coordinate (1x1) at (2,0.35);
-  \coordinate (2x1) at (3,0.35);
-  \coordinate (3x1) at (4,0.35);
-  \coordinate (4x1) at (5,0.35);
-  \coordinate (5x1) at (6,0.35);
-  \coordinate (6x1) at (6.5,0.35);
-  \node[box,minimum width=7cm] {condition\{\tikz[baseline=-1mm] \node[marble,circle] {};\}};
-  \coordinate (0x1a) at (1,-0.35);
-  \coordinate (4x1a) at (5,-0.35);
-  \coordinate (6x1a) at (6.5,-0.35);
+  \node[box,minimum width=7cm] (op) {condition\{\tikz[baseline=-1mm] \node[marble,circle] {};\}};
   \\
   
-  \draw [->] (0,0) -- (7,0);
+  \draw [time] (0,0) -- (7,0);
   \node[marble,circle,red] (0x2) at (1,0) {};
   \node[marble,circle,blue] (4x2) at (5,0) {};
   \node[complete] (6x2) at (6.5,0) {};
   \\
 };
 
-\draw [dash] (0x0) -- (0x1);
-\draw [dash] (1x0) -- (1x1);
-\draw [dash] (2x0) -- (2x1);
-\draw [dash] (3x0) -- (3x1);
-\draw [dash] (4x0) -- (4x1);
-\draw [dash] (5x0) -- (5x1);
-\draw [dash] (6x0) -- (6x1);
+\draw [dash] (0x0) -- (0x0|-op.north);
+\draw [dash] (1x0) -- (1x0|-op.north);
+\draw [dash] (2x0) -- (2x0|-op.north);
+\draw [dash] (3x0) -- (3x0|-op.north);
+\draw [dash] (4x0) -- (4x0|-op.north);
+\draw [dash] (5x0) -- (5x0|-op.north);
+\draw [dash] (6x0) -- (6x0|-op.north);
 
-\draw [dash] (0x1a) -- (0x2);
-\draw [dash] (4x1a) -- (4x2);
-\draw [dash] (6x1a) -- (6x2);
+\draw [revdash] (0x2) -- (0x2|-op.south);
+\draw [revdash] (4x2) -- (4x2|-op.south);
+\draw [revdash] (6x2) -- (6x2|-op.south);
 
 \end{tikzpicture}
 \end{document}
