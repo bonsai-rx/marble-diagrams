@@ -1,0 +1,51 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,hexagon,orange] (0x0) at (0.5,0) {};
+  \node[marble,diamond,yellow] (1x0) at (2,0) {};
+  \node[marble,triangle,green] (2x0) at (3,0) {};
+  \node[marble,diamond,cyan] (3x0) at (4.5,0) {};
+  \node[complete] (4x0) at (5,0) {};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle] (0x1) at (1.25,0) {};
+  \node[marble,circle] (1x1) at (3.5,0) {};
+  \node[complete] (2x1) at (5.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {sample};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,hexagon,orange] (0x2) at (1.25,0) {};
+  \node[marble,triangle,green] (1x2) at (3.5,0) {};
+  \node[marble,pentagon,cyan] (2x2) at (5.5,0) {};
+  \node[complete] (3x2) at (5.8,0) {};
+  \\
+};
+
+\draw [dash] (0x0) -- (0x0|-op.north);
+\draw [dash] (1x0) -- (1x0|-op.north);
+\draw [dash] (2x0) -- (2x0|-op.north);
+\draw [dash] (3x0) -- (3x0|-op.north);
+\draw [dash] (4x0) -- (4x0|-op.north);
+
+\draw [dash] (0x1) -- (0x1|-op.north);
+\draw [dash] (1x1) -- (1x1|-op.north);
+\draw [dash] (2x1) -- (2x1|-op.north);
+
+\draw [revdash] (0x2) -- (0x2|-op.south);
+\draw [revdash] (1x2) -- (1x2|-op.south);
+\draw [revdash] (2x2) -- (2x2|-op.south);
+\draw [revdash] (3x2) -- (3x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
