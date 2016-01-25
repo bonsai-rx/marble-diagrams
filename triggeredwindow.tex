@@ -1,0 +1,80 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,hexagon,orange] (0x0) at (0.5,0) {};
+  \node[marble,diamond,blue] (1x0) at (1,0) {};
+  \node[marble,pentagon,cyan] (2x0) at (1.5,0) {};
+  \node[marble,diamond,yellow] (3x0) at (3,0) {};
+  \node[marble,triangle,green] (4x0) at (4,0) {};
+  \node[complete] (5x0) at (5.5,0) {};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle] (0x1) at (2,0) {};
+  \node[marble,circle] (1x1) at (4.5,0) {};
+  \node[complete] (2x1) at (6,0) {};
+  \\
+  
+  \node[box,minimum width=7cm,minimum height=0.719cm] (op) {triggeredWindow};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \begin{scope}[xshift=0.2cm,rotate=-25]
+    \draw [time] (0,0) -- (2.5,0);
+    \coordinate (0x0x2) at (0,0);
+    \node[marble,hexagon,orange] (0x1x2) at (0.5,0) {};
+    \node[marble,diamond,blue] (0x2x2) at (1,0) {};
+    \node[marble,pentagon,cyan] (0x3x2) at (1.5,0) {};
+    \node[complete,rotate=-21] (0x4x2) at (2,0) {};
+  \end{scope}
+  \begin{scope}[xshift=2.2cm,rotate=-25]
+    \draw [time] (0,0) -- (3,0);
+    \coordinate (1x0x2) at (0,0);
+    \node[marble,diamond,yellow] (1x1x2) at (1,0) {};
+    \node[marble,triangle,green] (1x2x2) at (2,0) {};
+    \node[complete,rotate=-21] (1x3x2) at (2.5,0) {};
+  \end{scope}
+  \begin{scope}[xshift=4.7cm,rotate=-25]
+    \draw [time] (0,0) -- (1.5,0);
+    \coordinate (2x0x2) at (0,0);
+    \node[complete,rotate=-21] (2x3x2) at (1,0) {};
+  \end{scope}
+  \node[complete] (2x2) at (5.7,0) {};
+  \\
+};
+
+\draw [dash] (0x0) -- (0x0|-op.north);
+\draw [dash] (1x0) -- (1x0|-op.north);
+\draw [dash] (2x0) -- (2x0|-op.north);
+\draw [dash] (3x0) -- (3x0|-op.north);
+\draw [dash] (4x0) -- (4x0|-op.north);
+\draw [dash] (5x0) -- (5x0|-op.north);
+
+\draw [dash] (0x1) -- (0x1|-op.north);
+\draw [dash] (1x1) -- (1x1|-op.north);
+\draw [dash] (2x1) -- (2x1|-op.north);
+
+\draw [revdash] (0x0x2) -- (0x0x2|-op.south);
+\draw [revdash] (1x0x2) -- (0x1|-op.south);
+\draw [revdash] (2x0x2) -- (1x1|-op.south);
+\draw [revdash] (2x2) -- (5x0|-op.south);
+
+\draw [revdash,color=gray] (0x1x2) -- (0x0|-op.south);
+\draw [revdash,color=gray] (0x2x2) -- (1x0|-op.south);
+\draw [revdash,color=gray] (0x3x2) -- (2x0|-op.south);
+\draw [revdash] (0x4x2) -- (0x1|-op.south);
+
+\draw [revdash,color=gray] (1x1x2) -- (3x0|-op.south);
+\draw [revdash,color=gray] (1x2x2) -- (4x0|-op.south);
+\draw [revdash] (1x3x2) -- (1x1|-op.south);
+\draw [revdash] (2x3x2) -- (5x0|-op.south);
+
+\end{tikzpicture}
+\end{document}
