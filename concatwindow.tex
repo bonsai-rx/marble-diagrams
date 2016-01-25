@@ -1,0 +1,64 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix,calc]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \begin{scope}[xshift=0.5cm,rotate=-21]
+    \draw [time] (0,0) -- (3.3,0);
+    \coordinate (0x0) at (0,0);
+    \node[marble,circle,magenta] (0x0x0) at (0.75,0) {};
+    \node[marble,circle,cyan] (0x1x0) at (1.5,0) {};
+    \node[marble,circle,yellow] (0x2x0) at (2.25,0) {};
+    \node[complete,rotate=-21] (0x3x0) at (2.9,0) {};
+  \end{scope}
+  \begin{scope}[xshift=2.25cm,rotate=-21]
+    \draw [time] (0,0) -- (3.5,0);
+    \coordinate (1x0) at (0,0);
+    \node[marble,triangle,yellow] (1x0x0) at (0.85,0) {};
+    \node[marble,triangle,magenta] (1x1x0) at (1.6,0) {};
+    \node[marble,triangle,cyan] (1x2x0) at (2.35,0) {};
+    \node[complete,rotate=-21] (1x3x0) at (3.1,0) {};
+  \end{scope}
+  \node[complete] (2x0) at (4.9,0) {};
+  \\
+  
+  \node[box,minimum width=7cm,minimum height=0.7cm] (op) {concat};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \path let \p1 = (0x0x0) in node[marble,circle,magenta] (0x2) at (\x1,0) {};
+  \path let \p1 = (0x1x0) in node[marble,circle,cyan] (1x2) at (\x1,0) {};
+  \path let \p1 = (0x2x0) in node[marble,circle,yellow] (2x2) at (\x1,0) {};
+  \path let \p1 = (0x3x0) in node[marble,triangle,yellow] (3x2) at (\x1+0.85cm,0) {};
+  \path let \p1 = (0x3x0) in node[marble,triangle,magenta] (4x2) at (\x1+1.6cm,0) {};
+  \path let \p1 = (0x3x0) in node[marble,triangle,cyan] (5x2) at (\x1+2.35cm,0) {};
+  \path let \p1 = (0x3x0) in node[complete] (6x2) at (\x1+3.1cm,0) {};
+  \\
+};
+
+\draw [dash] (0x0) -- (0x0|-op.north);
+\draw [dash] (1x0) -- (1x0|-op.north);
+
+\draw [dashed] (0x0x0) -- (0x0x0|-op.north);
+\draw [dashed] (0x1x0) -- (0x1x0|-op.north);
+\draw [dashed] (0x2x0) -- (0x2x0|-op.north);
+\draw [dashed] (1x0x0) -- (1x0x0|-op.north);
+\draw [dashed] (1x1x0) -- (1x1x0|-op.north);
+\draw [dashed] (1x2x0) -- (1x2x0|-op.north);
+\draw [dashed] (1x3x0) -- (1x3x0|-op.north);
+
+\draw [revdash] (0x2) -- (0x2|-op.south);
+\draw [revdash] (1x2) -- (1x2|-op.south);
+\draw [revdash] (2x2) -- (2x2|-op.south);
+\draw [revdash] (3x2) -- (3x2|-op.south);
+\draw [revdash] (4x2) -- (4x2|-op.south);
+\draw [revdash] (5x2) -- (5x2|-op.south);
+\draw [revdash] (6x2) -- (6x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
