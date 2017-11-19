@@ -1,0 +1,45 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm,font=\sffamily]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,blue] (0x0) at (1,0) {};
+  \node[marble,circle,blue] (1x0) at (2,0) {};
+  \node[marble,circle,blue] (2x0) at (3,0) {};
+  \node[marble,circle,orange] (3x0) at (4,0) {};
+  \node[marble,circle,orange] (4x0) at (5,0) {};
+  \node[marble,circle,blue] (5x0) at (6,0) {};
+  \node[complete] (6x0) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=6.95cm,minimum height=0.719cm] (op) {DistinctUntilChanged};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,blue] (0x2) at (1,0) {};
+  \node[marble,circle,orange] (3x2) at (4,0) {};
+  \node[marble,circle,blue] (5x2) at (6,0) {};
+  \node[complete] (6x2) at (6.5,0) {};
+  \\
+};
+
+\draw [dash] (0x0) -- (0x0|-op.north);
+\draw [dash] (1x0) -- (1x0|-op.north);
+\draw [dash] (2x0) -- (2x0|-op.north);
+\draw [dash] (3x0) -- (3x0|-op.north);
+\draw [dash] (4x0) -- (4x0|-op.north);
+\draw [dash] (5x0) -- (5x0|-op.north);
+\draw [dash] (6x0) -- (6x0|-op.north);
+
+\draw [revdash] (0x2) -- (0x2|-op.south);
+\draw [revdash] (3x2) -- (3x2|-op.south);
+\draw [revdash] (5x2) -- (5x2|-op.south);
+\draw [revdash] (6x2) -- (6x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
