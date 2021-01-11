@@ -1,1 +1,4 @@
 *.pdf
+*.dvi
+*.svg
+output
