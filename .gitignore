@@ -1,4 +1,4 @@
 *.pdf
 *.dvi
 *.svg
-output
+build
