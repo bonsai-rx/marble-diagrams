@@ -1,0 +1,67 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,green] (1x0) at (3,0) {};
+  \node[marble,circle,blue] (2x0) at (4,0) {};
+  \node[complete] (3x0) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {CreateObservable\{
+  \begin{tikzpicture}[baseline=-1mm]
+    \node[marble,circle] (x) {};
+    \coordinate[right=5mm of x] (tstart);
+    \coordinate[right=27.5mm of x] (tend);
+    \draw [time] (tstart) -- (tend);
+    \node[marble,diamond,right=7.5mm of x] (y) {};
+    \node[marble,diamond,right=17.5mm of x] (y) {};
+    \draw [fdash] (x) -- (tstart);
+  \end{tikzpicture}
+  \}};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \begin{scope}[xshift=1cm,rotate=-25]
+    \draw [time] (0,0) -- (2.5,0);
+    \coordinate (0x2) at (0,0);
+    \node[marble,diamond,red] (0x1x2) at (0.7,0) {};
+    \node[marble,diamond,red] (0x2x2) at (1.5,0) {};
+    \node[complete,rotate=-21] (0x3x2) at (2,0) {};
+  \end{scope}
+  \begin{scope}[xshift=3cm,rotate=-25]
+    \draw [time] (0,0) -- (2.5,0);
+    \coordinate (1x2) at (0,0);
+    \node[marble,diamond,green] (1x1x2) at (0.7,0) {};
+    \node[marble,diamond,green] (1x2x2) at (1.5,0) {};
+    \node[complete,rotate=-21] (1x3x2) at (2,0) {};
+  \end{scope}
+  \begin{scope}[xshift=4cm,rotate=-25]
+    \draw [time] (0,0) -- (2.5,0);
+    \coordinate (2x2) at (0,0);
+    \node[marble,diamond,blue] (1x1x2) at (0.7,0) {};
+    \node[marble,diamond,blue] (1x2x2) at (1.5,0) {};
+    \node[complete,rotate=-21] (1x3x2) at (2,0) {};
+  \end{scope}
+  \node[complete] (3x2) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
