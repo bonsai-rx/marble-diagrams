@@ -1,0 +1,41 @@
+\documentclass[tikz]{standalone}
+\usepackage{rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (3.8,0);
+  \coordinate (0x0) at (0.3,0);
+  \node[marble,circle,yellow] (1x0) at (1,0) {};
+  \node[marble,circle,green] (2x0) at (2,0) {};
+  \node[marble,circle,cyan] (3x0) at (3,0) {};
+  \node[complete] (4x0) at (3.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm,minimum height=0.719cm] (op) {Delay};
+  \\
+  
+  \draw [time] (0,0) -- (5.55,0);
+  \node[marble,circle,yellow] (1x2) at (2.75,0) {};
+  \node[marble,circle,green] (2x2) at (3.75,0) {};
+  \node[marble,circle,cyan] (3x2) at (4.75,0) {};
+  \node[complete] (4x2) at (5.25,0) {};
+  \\
+};
+
+\draw [subscribe] (0x0) -- (0x0|-op.north) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
+\draw [rdash] (4x2) -- (4x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
