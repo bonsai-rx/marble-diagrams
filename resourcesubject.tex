@@ -1,0 +1,50 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \coordinate (Sx0) at (0.3,0);
+  \draw [time] (0,0) -- (6,0);
+  \node[marble,hexagon,red] (0x0) [right=0.5 of Sx0] {};
+  \node[marble,hexagon,green] (1x0) [right=1.7 of Sx0] {};
+  \node[marble,hexagon,blue] (2x0) [right=3.4 of Sx0] {};
+  \node[complete] (3x0) [right=4.5 of Sx0] {};
+  \\
+  
+  \node[box,minimum width=6cm,minimum height=0.719cm] (op) {ResourceSubject};
+  \\
+  
+  \coordinate (Sx2) at (0.3,0);
+  \draw [time] (0,0) -- (6,0);
+  \node[marble,hexagon,blue] (2x2) [right=4.4 of Sx2] {};
+  \node[complete] (3x2) [right=5 of Sx2] {};
+  \\
+  
+  \coordinate (Sx3) at (3.0,0);
+  \draw [time] (2.7,0) -- (6,0);
+  \node[marble,hexagon,blue] (2x3) [right=1.7 of Sx3] {};
+  \node[complete] (3x3) [right=2.3 of Sx3] {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+
+\draw [subscribe] (Sx0) -- (Sx0|-op.north) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [subscribe] (Sx2|-op.south) -- (Sx2) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [subscribe] (Sx3|-op.south) -- (Sx3) node[below,sloped,pos=0.75] {\tiny{subscribe}};
+
+\draw [rdash] (2x2) -- (2x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
+
+\draw [fdash] (2x2) -- (2x3);
+\draw [fdash] (3x2|-op.south) -- (3x3);
+
+\end{tikzpicture}
+\end{document}
