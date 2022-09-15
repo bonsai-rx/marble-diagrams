@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (3.3,0) -- (7,0);
+  \coordinate (2x0) at (3.3,0);
+  \node[marble,circle,yellow] (3x0) at (4,0) {};
+  \node[marble,circle,green] (4x0) at (5,0) {};
+  \node[marble,circle,cyan] (5x0) at (6,0) {};
+  \node[complete] (6x0) at (6.5,0) {};
+  \\
+  
+  \draw [time] (0,0) -- (3.9,0);
+  \node[marble,fivestar] (0x1) at (3,0) {};
+  \node[complete] (1x1) at (3.6,0) {};
+  \\
+  
+  \node[box,minimum width=7cm,minimum height=0.719cm] (op) {SubscribeWhen};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,yellow] (1x2) at (4,0) {};
+  \node[marble,circle,green] (2x2) at (5,0) {};
+  \node[marble,circle,cyan] (3x2) at (6,0) {};
+  \node[complete] (4x2) at (6.5,0) {};
+  \\
+};
+
+\draw [subscribe] (2x0) -- (2x0|-op.north) node[above,sloped,pos=0.35] {\tiny{subscribe}};
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (5x0) -- (5x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [fdash] (0x1) -- (0x1|-op.north);
+
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
+\draw [rdash] (4x2) -- (4x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
