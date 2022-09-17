@@ -10,17 +10,22 @@
   \draw [time] (0,0) -- (7,0);
   \node[marble,circle,inner sep=0pt] (0x0) at (1,0) {\scriptsize{$x_1$}};
   \node[marble,circle,inner sep=0pt] (1x0) at (2,0) {\scriptsize{$x_2$}};
-  \node[marble,circle,inner sep=0pt] (2x0) at (3,0) {\scriptsize{$x_3$}};
+  \node[draw=none,inner sep=0pt] (2x0) at (3,0.1) {\scriptsize{\boldmath$\ldots$}};
   \node[marble,circle,inner sep=0pt] (3x0) at (4,0) {\scriptsize{$x_4$}};
-  \node[draw=none,inner sep=0pt] (4x0) at (4.7,0.1) {\scriptsize{\boldmath$\ldots$}};
-  \node[marble,circle,inner sep=0pt] (5x0) at (5.4,0) {\scriptsize{$x_n$}};
-  \node[complete] (6x0) at (5.8,0) {};
+  \node[draw=none,inner sep=0pt] (4x0) at (5,0.1) {\scriptsize{\boldmath$\ldots$}};
+  \node[marble,circle,inner sep=0pt] (5x0) at (5.8,0) {\scriptsize{$x_n$}};
+  \node[complete] (6x0) at (6.5,0) {};
   \\
   
-  \node[box,minimum width=7cm,minimum height=0.719cm] (op) {Sum};
+  \node[box,minimum width=7cm,minimum height=0.719cm] (op) {Accumulate};
   \\
   
   \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,inner sep=1pt] (0x2) at (1,0) {\scriptsize{$x_1$}};
+  \node[marble,circle,inner sep=1pt] (1x2) at (2,0) {\scriptsize{$x_1 + x_2$}};
+  \node[draw=none,inner sep=0pt] (2x2) at (3,0.1) {\scriptsize{\boldmath$\ldots$}};
+  \node[marble,circle,inner sep=1pt] (3x2) at (4,0) {\scriptsize{$\sum\limits_{i=1}^{4} x_i$}};
+  \node[draw=none,inner sep=0pt] (4x2) at (4.9,0.1) {\scriptsize{\boldmath$\ldots$}};
   \node[marble,circle,inner sep=1pt] (5x2) at (5.8,0) {\scriptsize{$\sum\limits_{i=1}^{n} x_i$}};
   \node[complete] (6x2) at (6.5,0) {};
   \\
@@ -28,11 +33,13 @@
 
 \draw [fdash] (0x0) -- (0x0|-op.north);
 \draw [fdash] (1x0) -- (1x0|-op.north);
-\draw [fdash] (2x0) -- (2x0|-op.north);
 \draw [fdash] (3x0) -- (3x0|-op.north);
 \draw [fdash] (5x0) -- (5x0|-op.north);
 \draw [fdash] (6x0) -- (6x0|-op.north);
 
+\draw [rdash] (0x2) -- (0x2|-op.south);
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
 \draw [rdash] (5x2) -- (5x2|-op.south);
 \draw [rdash] (6x2) -- (6x2|-op.south);
 
