@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,inner sep=0pt] (0x0) at (1,0) {\scriptsize{2}};
+  \node[marble,circle,inner sep=0pt] (1x0) at (2,0) {\scriptsize{5}};
+  \node[marble,circle,inner sep=0pt] (2x0) at (3,0) {\scriptsize{1}};
+  \node[marble,circle,inner sep=0pt] (3x0) at (4,0) {\scriptsize{6}};
+  \node[marble,circle,inner sep=0pt] (4x0) at (5,0) {\scriptsize{3}};
+  \node[marble,circle,inner sep=0pt] (5x0) at (6,0) {\scriptsize{4}};
+  \node[complete] (6x0) at (6.4,0) {};
+  \\
+  
+  \node[box,minimum width=7cm,minimum height=0.719cm] (op) {Max};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,inner sep=1pt] (5x2) at (6.4,0) {\scriptsize{6}};
+  \node[complete] (6x2) at (6.7,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (5x0) -- (5x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [rdash] (5x2) -- (5x2|-op.south);
+\draw [rdash] (6x2) -- (6x2|-op.south);
+
+\end{tikzpicture}
+\end{document}

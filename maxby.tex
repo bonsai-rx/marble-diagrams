@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,diamond,yellow] (0x0) at (1,0) {};
+  \node[marble,heptagon,blue] (1x0) at (2,0) {};
+  \node[marble,triangle,red] (2x0) at (3,0) {};
+  \node[marble,pentagon,green] (3x0) at (4,0) {};
+  \node[marble,hexagon,cyan] (4x0) at (5,0) {};
+  \node[complete] (6x0) at (5.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm,minimum height=0.719cm] (op) {MaxBy $\left(\#sides\right)$};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,heptagon,blue] (5x2) at (5.5,0) {};
+  \node[complete] (6x2) at (6,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [rdash] (5x2) -- (5x2|-op.south);
+\draw [rdash] (6x2) -- (6x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
