@@ -1,0 +1,63 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (4,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,yellow] (1x0) at (1.75,0) {};
+  \node[marble,circle,green] (2x0) at (2.5,0) {};
+  \node[complete] (3x0) at (3.25,0) {};
+  \\
+
+  \draw [time] (3.25,0) -- (6,0);
+  \node[marble,circle,blue] (0x1) at (4,0) {};
+  \node[marble,circle,magenta] (1x1) at (4.75,0) {};
+  \node[error] (2x1) at (5.5,0) {};
+  \\
+
+  \draw [time] (5.5,0) -- (7,0);
+  \node[marble,circle,cyan] (0x2) at (6,0) {};
+  \node[complete] (1x2) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {OnErrorResumeNext};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x3) at (1,0) {};
+  \node[marble,circle,yellow] (1x3) at (1.75,0) {};
+  \node[marble,circle,green] (2x3) at (2.5,0) {};
+  \node[marble,circle,blue] (3x3) at (4,0) {};
+  \node[marble,circle,magenta] (4x3) at (4.75,0) {};
+  \node[marble,circle,cyan] (5x3) at (6,0) {};
+  \node[complete] (6x3) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+
+\draw [fdash] (0x1) -- (0x1|-op.north);
+\draw [fdash] (1x1) -- (1x1|-op.north);
+\draw [fdash] (2x1) -- (2x1|-op.north);
+
+\draw [fdash] (0x2) -- (0x2|-op.north);
+\draw [fdash] (1x2) -- (1x2|-op.north);
+
+\draw [rdash] (0x3) -- (0x3|-op.south);
+\draw [rdash] (1x3) -- (1x3|-op.south);
+\draw [rdash] (2x3) -- (2x3|-op.south);
+\draw [rdash] (3x3) -- (3x3|-op.south);
+\draw [rdash] (4x3) -- (4x3|-op.south);
+\draw [rdash] (5x3) -- (5x3|-op.south);
+\draw [rdash] (6x3) -- (6x3|-op.south);
+
+\end{tikzpicture}
+\end{document}
