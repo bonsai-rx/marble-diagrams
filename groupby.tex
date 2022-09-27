@@ -1,0 +1,65 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (0.5,0) {};
+  \node[marble,circle,yellow] (1x0) at (1.25,0) {};
+  \node[marble,triangle,green] (2x0) at (2,0) {};
+  \node[marble,circle,cyan] (3x0) at (2.75,0) {};
+  \node[marble,triangle,blue] (4x0) at (3.5,0) {};
+  \node[marble,triangle,magenta] (5x0) at (4.25,0) {};
+  \node[complete] (6x0) at (5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {GroupBy};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \begin{scope}[xshift=0.75cm,rotate=-25]
+    \draw [time] (0,0) -- (3,0);
+    \coordinate (0x0x2) at (0,0);
+    \node[marble,circle,red] (0x1x2) at (0.7,0) {};
+    \node[marble,circle,yellow] (0x2x2) at (1.35,0) {};
+    \node[marble,circle,cyan] (0x3x2) at (2,0) {};
+    \node[complete,rotate=-21] (0x4x2) at (2.5,0) {};
+  \end{scope}
+  \begin{scope}[xshift=2.75cm,rotate=-25]
+    \draw [time] (0,0) -- (3,0);
+    \coordinate (1x0x2) at (0,0);
+    \node[marble,triangle,green] (1x1x2) at (0.7,0) {};
+    \node[marble,triangle,blue] (1x2x2) at (1.35,0) {};
+    \node[marble,triangle,magenta] (1x3x2) at (2,0) {};
+    \node[complete,rotate=-21] (1x4x2) at (2.5,0) {};
+  \end{scope}
+  \node[complete] (2x2) at (5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (5x0) -- (5x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+% \draw [rdash] (0x0x2) -- (0x0x2|-op.south);
+% \draw [rdash] (1x0x2) -- (1x0x2|-op.south);
+% \draw [rdash] (2x2) -- (2x2|-op.south);
+
+\draw [rdash,color=gray] (0x1x2) -- (0x0|-op.south);
+\draw [rdash,color=gray] (0x2x2) -- (1x0|-op.south);
+\draw [rdash,color=gray] (0x3x2) -- (3x0|-op.south);
+
+\draw [rdash,color=gray] (1x1x2) -- (2x0|-op.south);
+\draw [rdash,color=gray] (1x2x2) -- (4x0|-op.south);
+\draw [rdash,color=gray] (1x3x2) -- (5x0|-op.south);
+
+\end{tikzpicture}
+\end{document}
