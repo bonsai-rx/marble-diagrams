@@ -1,0 +1,54 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (0.5,0) {};
+  \node[marble,circle,yellow] (1x0) at (1.25,0) {};
+  \node[marble,circle,green] (2x0) at (2,0) {};
+  \node[marble,circle,cyan] (3x0) at (3.5,0) {};
+  \node[marble,circle,blue] (4x0) at (4.25,0) {};
+  \node[marble,circle,magenta] (5x0) at (5,0) {};
+  \node[complete] (6x0) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {Buffer(timeSpan = $\Delta t$)};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[buffer] (0x2) at (1.6,0) {
+    \tikz[baseline=-1mm] \node[marble,circle,red] {};
+    \tikz[baseline=-1mm] \node[marble,circle,yellow] (x) {};
+  };
+  \node[buffer] (1x2) at (3.6,0) {
+    \tikz[baseline=-1mm] \node[marble,circle,green] {};
+    \tikz[baseline=-1mm] \node[marble,circle,cyan] (x) {};
+  };
+  \node[buffer] (2x2) at (5.6,0) {
+    \tikz[baseline=-1mm] \node[marble,circle,blue] (x) {};
+    \tikz[baseline=-1mm] \node[marble,circle,magenta] (x) {};
+  };
+  \node[complete] (3x2) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (5x0) -- (5x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
