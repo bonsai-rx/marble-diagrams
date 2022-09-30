@@ -1,0 +1,39 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,green] (1x0) at (3,0) {};
+  \node[marble,circle,blue] (2x0) at (5,0) {};
+  \node[complete] (3x0) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {Timestamp};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[notification] (0x2) at (1,0) {\scriptsize{$t_0$} \tikz[baseline=-1mm] \node[marble,circle,red] {};};
+  \node[notification] (1x2) at (3,0) {\scriptsize{$t_1$} \tikz[baseline=-1mm] \node[marble,circle,green] {};};
+  \node[notification] (2x2) at (5,0) {\scriptsize{$t_2$} \tikz[baseline=-1mm] \node[marble,circle,blue] {};};
+  \node[complete] (3x2) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
