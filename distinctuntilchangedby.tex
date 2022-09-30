@@ -8,24 +8,25 @@
 \matrix[row sep=0.5cm,font=\sffamily]
 {
   \draw [time] (0,0) -- (7,0);
-  \node[marble,circle,red] (0x0) at (1,0) {};
-  \node[marble,circle,yellow] (1x0) at (2,0) {};
-  \node[marble,circle,yellow] (2x0) at (3,0) {};
-  \node[marble,circle,red] (3x0) at (4,0) {};
-  \node[marble,circle,yellow] (4x0) at (5,0) {};
-  \node[marble,circle,yellow] (5x0) at (6,0) {};
+  \node[marble,diamond,red] (0x0) at (1,0) {};
+  \node[marble,diamond,yellow] (1x0) at (2,0) {};
+  \node[marble,heptagon,yellow] (2x0) at (3,0) {};
+  \node[marble,diamond,red] (3x0) at (4,0) {};
+  \node[marble,pentagon,yellow] (4x0) at (5,0) {};
+  \node[marble,diamond,yellow] (5x0) at (6,0) {};
   \node[complete] (6x0) at (6.5,0) {};
   \\
   
-  \node[box,minimum width=6.95cm] (op) {DistinctUntilChanged};
+  \node[box,minimum width=6.95cm] (op) {DistinctUntilChangedBy $\left(\#sides\right)$};
   \\
   
   \draw [time] (0,0) -- (7,0);
-  \node[marble,circle,red] (0x2) at (1,0) {};
-  \node[marble,circle,yellow] (1x2) at (2,0) {};
-  \node[marble,circle,red] (2x2) at (4,0) {};
-  \node[marble,circle,yellow] (3x2) at (5,0) {};
-  \node[complete] (4x2) at (6.5,0) {};
+  \node[marble,diamond,red] (0x2) at (1,0) {};
+  \node[marble,heptagon,yellow] (1x2) at (3,0) {};
+  \node[marble,diamond,red] (2x2) at (4,0) {};
+  \node[marble,pentagon,yellow] (3x2) at (5,0) {};
+  \node[marble,diamond,yellow] (4x2) at (6,0) {};
+  \node[complete] (5x2) at (6.5,0) {};
   \\
 };
 
@@ -42,6 +43,7 @@
 \draw [rdash] (2x2) -- (2x2|-op.south);
 \draw [rdash] (3x2) -- (3x2|-op.south);
 \draw [rdash] (4x2) -- (4x2|-op.south);
+\draw [rdash] (5x2) -- (5x2|-op.south);
 
 \end{tikzpicture}
 \end{document}
