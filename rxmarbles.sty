@@ -37,7 +37,8 @@
  fivestar/.style={star,star point ratio=2.5,inner sep=0pt,rounded corners=0.2mm},
  buffer/.style={draw,rounded rectangle,fill=white,inner sep=3pt},
  notification/.style={draw,chamfered rectangle,fill=white,inner sep=0.5pt,minimum height=0.72cm},
- interval/.style={decorate,decoration={brace,mirror,raise=2ex,amplitude=5pt}},
+ brace interval/.style={decorate,decoration={brace,mirror,raise=2ex,amplitude=5pt},to path={-- (\tikztotarget) [midway,yshift=-0.5em]\tikztonodes}},
+ time interval/.style={yshift=-1em,to path={-- ++(0,-0.1) -| node[pos=0.25,yshift=0.5em] {\scriptsize{$\Delta t$}} (\tikztotarget)}},
  complete/.style={draw=none,fill=none,font={\boldmath$\vert$}},
  error/.style={draw=none,fill=none,font={\huge$\times$}},
  pair/.style={draw,rectangle,minimum height=1.5cm}

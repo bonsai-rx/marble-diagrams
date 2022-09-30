@@ -8,11 +8,11 @@
 \matrix[row sep=0.5cm]
 {
   \draw [time] (0,0) -- (7,0);
-  \draw[interval] (0.3,0) -- (1.5,0) node[midway,yshift=-0.5em] {\scriptsize{$\Delta t_0$}};
+  \draw[brace interval] (0.3,0) to node {\scriptsize{$\Delta t_0$}} (1.5,0);
   \node[marble,circle,red] (0x0) at (1.5,0) {};
-  \draw[interval] (1.5,0) -- (3,0) node[midway,yshift=-0.5em] {\scriptsize{$\Delta t_1$}};
+  \draw[brace interval] (1.5,0) to node {\scriptsize{$\Delta t_1$}} (3,0);
   \node[marble,circle,green] (1x0) at (3,0) {};
-  \draw[interval] (3,0) -- (5,0) node[midway,yshift=-0.5em] {\scriptsize{$\Delta t_2$}};
+  \draw[brace interval] (3,0) to node {\scriptsize{$\Delta t_2$}} (5,0);
   \node[marble,circle,orange] (2x0) at (5,0) {};
   \node[complete] (3x0) at (6.5,0) {};
   \\
