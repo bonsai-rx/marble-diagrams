@@ -7,7 +7,7 @@
 
 \matrix[row sep=0.5cm]
 {
-  \draw [time] (0,0) -- (7,0);
+  \draw [time] (0,0) -- (5.5,0);
   \node[marble,circle,orange] (0x0) at (0.5,0) {};
   \node[marble,circle,yellow] (1x0) at (2,0) {};
   \node[marble,circle,green] (2x0) at (3,0) {};
@@ -15,20 +15,19 @@
   \node[complete] (4x0) at (5,0) {};
   \\
   
-  \draw [time] (0,0) -- (7,0);
+  \draw [time] (0,0) -- (6,0);
   \node[marble,diamond] (0x1) at (1.25,0) {};
   \node[marble,fivestar] (1x1) at (3.5,0) {};
   \node[complete] (2x1) at (5.5,0) {};
   \\
   
-  \node[box,minimum width=7cm] (op) {Sample};
+  \node[box,minimum width=7cm] (op) {Gate};
   \\
   
-  \draw [time] (0,0) -- (7,0);
-  \node[marble,circle,orange] (0x2) at (1.25,0) {};
-  \node[marble,circle,green] (1x2) at (3.5,0) {};
-  \node[marble,circle,cyan] (2x2) at (5.5,0) {};
-  \node[complete] (3x2) at (5.9,0) {};
+  \draw [time] (0,0) -- (6.3,0);
+  \node[marble,circle,yellow] (0x2) at (2,0) {};
+  \node[marble,circle,cyan] (1x2) at (4.5,0) {};
+  \node[complete] (2x2) at (5,0) {};
   \\
 };
 
@@ -40,12 +39,10 @@
 
 \draw [fdash] (0x1) -- (0x1|-op.north);
 \draw [fdash] (1x1) -- (1x1|-op.north);
-\draw [fdash] (2x1) -- (2x1|-op.north);
 
 \draw [rdash] (0x2) -- (0x2|-op.south);
 \draw [rdash] (1x2) -- (1x2|-op.south);
 \draw [rdash] (2x2) -- (2x2|-op.south);
-\draw [rdash] (3x2) -- (3x2|-op.south);
 
 \end{tikzpicture}
 \end{document}

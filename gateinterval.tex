@@ -15,20 +15,18 @@
   \node[complete] (4x0) at (5,0) {};
   \\
   
-  \draw [time] (0,0) -- (7,0);
-  \node[marble,diamond] (0x1) at (1.25,0) {};
-  \node[marble,fivestar] (1x1) at (3.5,0) {};
-  \node[complete] (2x1) at (5.5,0) {};
-  \\
-  
-  \node[box,minimum width=7cm] (op) {Sample};
+  \node[box,minimum width=7cm] (op) {GateInterval ($\Delta t$)};
   \\
   
   \draw [time] (0,0) -- (7,0);
-  \node[marble,circle,orange] (0x2) at (1.25,0) {};
-  \node[marble,circle,green] (1x2) at (3.5,0) {};
-  \node[marble,circle,cyan] (2x2) at (5.5,0) {};
-  \node[complete] (3x2) at (5.9,0) {};
+  \node[marble,circle,orange] (0x2) at (0.5,0) {};
+  \draw[interval] (0.3,0) -- (1.8,0) node[midway,yshift=-0.5em] {\scriptsize{$\Delta t$}};
+  \draw[interval] (1.8,0) -- (3.3,0) node[midway,yshift=-0.5em] {\scriptsize{$\Delta t$}};
+  \node[marble,circle,yellow] (1x2) at (2,0) {};
+  \draw[interval] (3.3,0) -- (4.8,0) node[midway,yshift=-0.5em] {\scriptsize{$\Delta t$}};
+  \node[marble,circle,cyan] (2x2) at (4.5,0) {};
+  \draw[interval] (4.8,0) -- (6.3,0) node[midway,yshift=-0.5em] {\scriptsize{$\Delta t$}};
+  \node[complete] (3x2) at (5,0) {};
   \\
 };
 
@@ -37,10 +35,6 @@
 \draw [fdash] (2x0) -- (2x0|-op.north);
 \draw [fdash] (3x0) -- (3x0|-op.north);
 \draw [fdash] (4x0) -- (4x0|-op.north);
-
-\draw [fdash] (0x1) -- (0x1|-op.north);
-\draw [fdash] (1x1) -- (1x1|-op.north);
-\draw [fdash] (2x1) -- (2x1|-op.north);
 
 \draw [rdash] (0x2) -- (0x2|-op.south);
 \draw [rdash] (1x2) -- (1x2|-op.south);
