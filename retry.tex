@@ -18,20 +18,28 @@
   \node[marble,circle,red] (5x0) at (3.2,0) {};
   \node[marble,circle,green] (6x0) at (3.8,0) {};
   \node[marble,circle,blue] (7x0) at (4.4,0) {};
-  \node[complete] (8x0) at (4.8,0) {};
+  \node[error] (8x0) at (4.8,0) {};
+
+  \draw [thick] (5.2,0) -- (5.8,0);
+  \draw [time] (6,0) -- (6.5,0);
+  \coordinate (9x0) at (5.2,0);
+  \node[marble,circle,red] (10x0) at (5.8,0) {};
+  \node[complete] (11x0) at (6.15,0) {};
   \\
   
-  \node[box,minimum width=6.95cm] (op) {Repeat(2)};
+  \node[box,minimum width=6.95cm] (op) {Retry};
   \\
   
-  \draw [time] (0,0) -- (5.1,0);
+  \draw [thick] (0,0) -- (6,0);
+  \draw [time] (6,0) -- (6.5,0);
   \node[marble,circle,red] (0x2) at (0.6,0) {};
   \node[marble,circle,green] (1x2) at (1.2,0) {};
   \node[marble,circle,blue] (2x2) at (1.8,0) {};
   \node[marble,circle,red] (3x2) at (3.2,0) {};
   \node[marble,circle,green] (4x2) at (3.8,0) {};
   \node[marble,circle,blue] (5x2) at (4.4,0) {};
-  \node[complete] (6x2) at (4.8,0) {};
+  \node[marble,circle,red] (6x2) at (5.8,0) {};
+  \node[complete] (7x2) at (6.15,0) {};
   \\
 };
 
@@ -47,6 +55,11 @@
 \draw [fdash] (7x0) -- (7x0|-op.north);
 \draw [fdash] (8x0) -- (8x0|-op.north);
 
+\draw [subscribe] (9x0) -- (9x0|-op.north) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+
+\draw [fdash] (10x0) -- (10x0|-op.north);
+\draw [fdash] (11x0) -- (11x0|-op.north);
+
 \draw [rdash] (0x2) -- (0x2|-op.south);
 \draw [rdash] (1x2) -- (1x2|-op.south);
 \draw [rdash] (2x2) -- (2x2|-op.south);
@@ -54,7 +67,10 @@
 \draw [rdash] (3x2) -- (3x2|-op.south);
 \draw [rdash] (4x2) -- (4x2|-op.south);
 \draw [rdash] (5x2) -- (5x2|-op.south);
+
 \draw [rdash] (6x2) -- (6x2|-op.south);
+\draw [rdash] (7x2) -- (7x2|-op.south);
+
 
 \end{tikzpicture}
 \end{document}

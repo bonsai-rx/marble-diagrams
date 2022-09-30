@@ -11,7 +11,7 @@
   \node[marble,circle,red] (0x0) at (0.6,0) {};
   \node[marble,circle,green] (1x0) at (1.2,0) {};
   \node[marble,circle,blue] (2x0) at (1.8,0) {};
-  \node[complete] (3x0) at (2.2,0) {};
+  \node[error] (3x0) at (2.2,0) {};
 
   \draw [time] (2.6,0) -- (5.1,0);
   \coordinate (4x0) at (2.6,0);
@@ -21,7 +21,7 @@
   \node[complete] (8x0) at (4.8,0) {};
   \\
   
-  \node[box,minimum width=6.95cm] (op) {Repeat(count = 2)};
+  \node[box,minimum width=6.95cm] (op) {Retry(count = 2)};
   \\
   
   \draw [time] (0,0) -- (5.1,0);
