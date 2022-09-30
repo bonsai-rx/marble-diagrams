@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,green] (1x0) at (3,0) {};
+  \node[complete] (2x0) at (5.25,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {IgnoreElements};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[complete] (0x2) at (5.25,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
