@@ -1,0 +1,97 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (0.5,0) {};
+  \node[marble,circle,yellow] (1x0) at (1.25,0) {};
+  \node[marble,circle,green] (2x0) at (2,0) {};
+  \node[marble,circle,cyan] (3x0) at (3.5,0) {};
+  \node[marble,circle,blue] (4x0) at (4.25,0) {};
+  \node[marble,circle,magenta] (5x0) at (5,0) {};
+  \node[complete] (6x0) at (6.5,0) {};
+  \\
+
+  \draw [time] (0,0) -- (6.4,0);
+  \begin{scope}[xshift=0.88cm,rotate=-15]
+    \draw [time] (0,0) -- (3,0);
+    \coordinate (0x0x2) at (0,0);
+    \node[marble,rounded rectangle,white] (0x1x2) at (1.8,0) {\scriptsize{close}};
+    \node[complete,rotate=-15] (0x2x2) at (2.6,0) {};
+  \end{scope}
+  \node[marble,rounded rectangle,white,inner sep=1pt] (0x1) at (0.88,0) {\scriptsize{open}};
+  \begin{scope}[xshift=3.15cm,rotate=-15]
+    \draw [time] (0,0) -- (3.3,0);
+    \coordinate (1x0x2) at (0,0);
+    \node[marble,rounded rectangle,white] (1x1x2) at (2.4,0) {\scriptsize{close}};
+    \node[complete,rotate=-15] (1x2x2) at (2.9,0) {};
+  \end{scope}
+  \node[marble,rounded rectangle,white,inner sep=1pt] (1x1) at (3.15,0) {\scriptsize{open}};
+  \node[complete] (2x1) at (6,0) {};
+  \\
+
+  \node[box,minimum width=7cm] (op) {Window\{
+    \begin{tikzpicture}[baseline=-1mm]
+      \node[marble,rounded rectangle,white,inner sep=1pt] (x) {\scriptsize{open}};
+      \coordinate[right=5mm of x] (tstart);
+      \coordinate[right=23mm of x] (tend);
+      \draw [time] (tstart) -- (tend);
+      \node[marble,rounded rectangle,white,right=12mm of x] (y) {\scriptsize{close}};
+      \draw [fdash] (x) -- (tstart);
+    \end{tikzpicture}
+    \}};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \begin{scope}[xshift=0.88cm,rotate=-25]
+    \draw [time] (0,0) -- (2.3,0);
+    \coordinate (0x0x3) at (0,0);
+    \node[marble,circle,yellow] (0x1x3) at (0.7,0) {};
+    \node[marble,circle,green] (0x2x3) at (1.35,0) {};
+    \node[complete,rotate=-25] (0x3x3) at (1.9,0) {};
+  \end{scope}
+  \begin{scope}[xshift=3.15cm,rotate=-25]
+    \draw [time] (0,0) -- (3,0);
+    \coordinate (1x0x3) at (0,0);
+    \node[marble,circle,cyan] (1x1x3) at (0.7,0) {};
+    \node[marble,circle,blue] (1x2x3) at (1.35,0) {};
+    \node[marble,circle,magenta] (1x3x3) at (2,0) {};
+    \node[complete,rotate=-25] (1x4x3) at (2.5,0) {};
+  \end{scope}
+  \node[complete] (2x3) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (5x0) -- (5x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [fdash] (0x1) -- (0x1|-op.north);
+\draw [fdash] (1x1) -- (1x1|-op.north);
+\draw [fdash] (0x1x2) -- (0x1x2|-op.north);
+\draw [fdash] (1x1x2) -- (1x1x2|-op.north);
+
+\draw [rdash] (0x0x3) -- (0x0x3|-op.south);
+\draw [rdash] (1x0x3) -- (1x0x3|-op.south);
+\draw [rdash] (2x3) -- (2x3|-op.south);
+
+\draw [rdash,color=gray] (0x1x3) -- (1x0|-op.south);
+\draw [rdash,color=gray] (0x2x3) -- (2x0|-op.south);
+\draw [rdash,color=gray] (0x3x3) -- (0x1x2|-op.south);
+
+\draw [rdash,color=gray] (1x1x3) -- (3x0|-op.south);
+\draw [rdash,color=gray] (1x2x3) -- (4x0|-op.south);
+\draw [rdash,color=gray] (1x3x3) -- (5x0|-op.south);
+\draw [rdash,color=gray] (1x4x3) -- (1x1x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
