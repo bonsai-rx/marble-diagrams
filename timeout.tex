@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,orange] (1x0) at (1.75,0) {};
+  \node[marble,circle,yellow] (2x0) at (2.5,0) {};
+  \node[marble,circle,green] (3x0) at (3.25,0) {};
+  \node[marble,circle,cyan] (4x0) at (5.25,0) {};
+  \node[complete] (5x0) at (6,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {Timeout ($\Delta t$)};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x2) at (1,0) {};
+  \node[marble,circle,orange] (1x2) at (1.75,0) {};
+  \node[marble,circle,yellow] (2x2) at (2.5,0) {};
+  \node[marble,circle,green] (3x2) at (3.25,0) {};
+  \node[error] (4x2) at (4.75,0) {};
+
+  \draw[time interval] (3.25,0) to (4.75,0);
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (5x0) -- (5x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+\draw [rdash] (3x2) -- (3x2|-op.south);
+\draw [rdash] (4x2) -- (4x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
