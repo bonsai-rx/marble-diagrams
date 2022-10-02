@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \node[box,minimum width=7cm] (op) {Defer\{
+    \begin{tikzpicture}[baseline=-1mm]
+      \coordinate (tstart);
+      \coordinate[right=2 of tstart] (tend);
+      \draw [time] (tstart) -- (tend);
+      \node[marble,circle,red,right=0.2 of tstart] (d0x0) {};
+      \node[marble,diamond,red,right=0.1 of d0x0] (d0x1) {};
+      \node[complete,inner sep=1pt,right=0.5 of d0x0] (d0x2) {};
+    \end{tikzpicture},
+    \begin{tikzpicture}[baseline=-1mm]
+      \coordinate (tstart);
+      \coordinate[right=2 of tstart] (tend);
+      \draw [time] (tstart) -- (tend);
+      \node[marble,circle,green,right=0.2 of tstart] (d1x0) {};
+      \node[marble,diamond,green,right=0.1 of d1x0] (d1x1) {};
+      \node[complete,inner sep=1pt,right=0.5 of d1x0] (d1x2) {};
+    \end{tikzpicture}, \ldots
+    \}};
+  \\
+  
+  \draw [time] (1.2,0) -- (3.5,0);
+  \coordinate (Sx2) at (1.4,0);
+  \node[marble,circle,red] (0x2) at (1.945,0) {};
+  \node[marble,diamond,red,right=0.1 of 0x2] (1x2) {};
+  \node[complete,right=0.5 of 0x2] (2x2) {};
+  \\
+  
+  \draw [time] (3.5,0) -- (5.75,0);
+  \coordinate (Sx3) at (3.65,0);
+  \node[marble,circle,green] (0x3) at (4.185,0) {};
+  \node[marble,diamond,green,right=0.1 of 0x3] (1x3) {};
+  \node[complete,right=0.5 of 0x3] (2x3) {};
+  \\
+};
+
+\draw [subscribe] (Sx2|-op.south) -- (Sx2) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [subscribe] (Sx3|-op.south) -- (Sx3) node[above,sloped,pos=0.75] {\tiny{subscribe}};
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+
+\draw [rdash] (0x3) -- (0x3|-op.south);
+\draw [rdash] (1x3) -- (1x3|-op.south);
+\draw [rdash] (2x3) -- (2x3|-op.south);
+
+\end{tikzpicture}
+\end{document}
