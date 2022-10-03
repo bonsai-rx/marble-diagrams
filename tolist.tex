@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (0.5,0) {};
+  \node[marble,circle,yellow] (1x0) at (1.75,0) {};
+  \node[marble,circle,green] (2x0) at (3.5,0) {};
+  \node[complete] (6x0) at (4,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {ToList};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[buffer] (0x2) at (4,0) {
+    \tikz[baseline=-1mm] \node[marble,circle,red] {}; ,
+    \tikz[baseline=-1mm] \node[marble,circle,yellow] (x) {}; ,
+    \tikz[baseline=-1mm] \node[marble,circle,green] (x) {};
+  };
+  \node[complete] (1x2) at (5.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+
+\end{tikzpicture}
+\end{document}

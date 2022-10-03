@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles,amsmath}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (0.5,0) {};
+  \node[marble,diamond,yellow] (1x0) at (1.25,0) {};
+  \node[marble,heptagon,blue] (1x0) at (2,0) {};
+  \node[marble,diamond,orange] (2x0) at (2.75,0) {};
+  \node[marble,circle,green] (2x0) at (3.5,0) {};
+  \node[complete] (6x0) at (4,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {ToLookup $\left(shape\right)$};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[notification] (0x2) at (4,0) {
+    $\left[
+      \begin{alignedat}{4}
+        \tikz[baseline=-1mm] \node[marble,circle,white] {};:&(&\tikz[baseline=-1mm] \node[marble,circle,red] {};,&\tikz[baseline=-1mm] \node[marble,circle,green] {};)\\
+        \tikz[baseline=-1mm] \node[marble,diamond,white] {};:&(&\tikz[baseline=-1mm] \node[marble,diamond,yellow] {};,&\tikz[baseline=-1mm] \node[marble,diamond,orange] {};)\\
+        \tikz[baseline=-1mm] \node[marble,heptagon,white] {};:&(&\tikz[baseline=-1mm] \node[marble,heptagon,blue] {};)&
+      \end{alignedat}
+    \right]$
+  };
+  \node[complete] (1x2) at (5.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
