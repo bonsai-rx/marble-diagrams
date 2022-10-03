@@ -1,0 +1,26 @@
+\documentclass[tikz]{standalone}
+\usepackage{rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \node[box,minimum width=7cm] (op) {Timer ($\Delta t$)};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \coordinate (0x2) at (0.2,0);
+  \draw[time interval] (0.2,0) to (2.2,0);
+  \node[marble,circle,red] (1x2) at (2.2,0) {};
+  \node[complete] (2x2) at (2.8,0) {};
+  \\
+};
+
+\draw [subscribe] (0x2|-op.south) -- (0x2) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+
+\end{tikzpicture}
+\end{document}

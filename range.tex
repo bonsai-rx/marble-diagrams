@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{  
+  \node[box,minimum width=7cm] (op) {Range $\left(n, m\right)$};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,rounded rectangle] (0x0) at (0.8,0) {\scriptsize{$n$}};
+  \node[marble,rounded rectangle] (1x0) at (1.85,0) {\scriptsize{$n+1$}};
+  \node[marble,rounded rectangle] (2x0) at (3.1,0) {\scriptsize{$n+2$}};
+  \node[draw=none,inner sep=0pt] (3x0) at (4.1,0.1) {\scriptsize{\boldmath$\ldots$}};
+  \node[marble,rounded rectangle] (4x0) at (5.4,0) {\scriptsize{$n+m-1$}};
+  \node[complete] (5x0) at (6.5,0) {};
+  \\
+};
+
+\draw [rdash] (0x0) -- (0x0|-op.south);
+\draw [rdash] (1x0) -- (1x0|-op.south);
+\draw [rdash] (2x0) -- (2x0|-op.south);
+\draw [rdash] (4x0) -- (4x0|-op.south);
+\draw [rdash] (5x0) -- (5x0|-op.south);
+
+\end{tikzpicture}
+\end{document}
