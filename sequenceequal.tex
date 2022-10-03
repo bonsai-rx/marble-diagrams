@@ -1,0 +1,49 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix,backgrounds]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,green] (1x0) at (2.5,0) {};
+  \node[marble,circle,cyan] (2x0) at (4,0) {};
+  \node[marble,circle,magenta] (3x0) at (5.5,0) {};
+  \node[complete] (4x0) at (6.4,0) {};
+  \\
+
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x1) at (1.5,0) {};
+  \node[marble,circle,green] (1x1) at (3.25,0) {};
+  \node[marble,circle,blue] (2x1) at (4.75,0) {};
+  \node[complete] (3x1) at (6,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {SequenceEqual};
+  \\
+
+  \draw [time] (0,0) -- (7,0);
+  \node[notification] (0x3) at (4.75,0) {false};
+  \node[complete] (1x3) at (5.4,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+
+\draw [fdash] (0x1) -- (0x1|-op.north);
+\draw [fdash] (1x1) -- (1x1|-op.north);
+\draw [fdash] (2x1) -- (2x1|-op.north);
+\draw [fdash] (3x1) -- (3x1|-op.north);
+
+\draw [rdash] (0x3) -- (0x3|-op.south);
+\draw [rdash] (1x3) -- (1x3|-op.south);
+
+\end{tikzpicture}
+\end{document}
