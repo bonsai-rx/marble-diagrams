@@ -1,0 +1,76 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[buffer] (0x0) at (2,0) {
+    \tikz[baseline=-1mm] \node[marble,diamond,red,inner sep=0pt] {\scriptsize{2}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,yellow,inner sep=0pt] (x) {\scriptsize{1}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,green,inner sep=0pt] (x) {\scriptsize{5}};
+  };
+  \node[buffer] (1x0) at (5,0) {
+    \tikz[baseline=-1mm] \node[marble,pentagon,cyan,inner sep=0pt] {\scriptsize{4}}; ,
+    \tikz[baseline=-1mm] \node[marble,heptagon,orange,inner sep=0pt] (x) {\scriptsize{3}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,magenta,inner sep=0pt] (x) {\scriptsize{6}};
+  };
+  \node[complete] (2x0) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (pre) {OrderBy $\left(\#sides\right)$};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[buffer] (0x2) at (2,0) {
+    \tikz[baseline=-1mm] \node[marble,diamond,red,inner sep=0pt] {\scriptsize{2}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,yellow,inner sep=0pt] (x) {\scriptsize{1}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,green,inner sep=0pt] (x) {\scriptsize{5}};
+  };
+  \node[buffer] (1x2) at (5,0) {
+    \tikz[baseline=-1mm] \node[marble,pentagon,cyan,inner sep=0pt] {\scriptsize{4}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,magenta,inner sep=0pt] (x) {\scriptsize{6}}; ,
+    \tikz[baseline=-1mm] \node[marble,heptagon,orange,inner sep=0pt] (x) {\scriptsize{3}};
+  };
+  \node[complete] (2x2) at (6.5,0) {};
+  \\
+
+  \node[box,minimum width=7cm] (op) {ThenByDescending $\left(value\right)$};
+  \\
+
+  \draw [time] (0,0) -- (7,0);
+  \node[buffer] (0x4) at (2,0) {
+    \tikz[baseline=-1mm] \node[marble,diamond,red,inner sep=0pt] {\scriptsize{2}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,green,inner sep=0pt] (x) {\scriptsize{5}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,yellow,inner sep=0pt] (x) {\scriptsize{1}};
+  };
+  \node[buffer] (1x4) at (5,0) {
+    \tikz[baseline=-1mm] \node[marble,pentagon,magenta,inner sep=0pt] (x) {\scriptsize{6}}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,cyan,inner sep=0pt] {\scriptsize{4}}; ,
+    \tikz[baseline=-1mm] \node[marble,heptagon,orange,inner sep=0pt] (x) {\scriptsize{3}};
+  };
+  \node[complete] (2x4) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-pre.north);
+\draw [fdash] (1x0) -- (1x0|-pre.north);
+\draw [fdash] (2x0) -- (2x0|-pre.north);
+
+\draw [rdash] (0x2) -- (0x2|-pre.south);
+\draw [rdash] (1x2) -- (1x2|-pre.south);
+\draw [rdash] (2x2) -- (2x2|-pre.south);
+
+\draw [fdash] (0x2) -- (0x2|-op.north);
+\draw [fdash] (1x2) -- (1x2|-op.north);
+\draw [fdash] (2x2) -- (2x2|-op.north);
+
+\draw [rdash] (0x4) -- (0x4|-op.south);
+\draw [rdash] (1x4) -- (1x4|-op.south);
+\draw [rdash] (2x4) -- (2x4|-op.south);
+
+\end{tikzpicture}
+\end{document}

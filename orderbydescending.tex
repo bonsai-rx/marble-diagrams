@@ -1,0 +1,51 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[buffer] (0x0) at (2,0) {
+    \tikz[baseline=-1mm] \node[marble,diamond,red] {}; ,
+    \tikz[baseline=-1mm] \node[marble,fivestar,yellow] (x) {}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,green] (x) {};
+  };
+  \node[buffer] (1x0) at (5,0) {
+    \tikz[baseline=-1mm] \node[marble,fivestar,cyan] {}; ,
+    \tikz[baseline=-1mm] \node[marble,heptagon,orange] (x) {}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,magenta] (x) {};
+  };
+  \node[complete] (2x0) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {OrderByDescending $\left(\#sides\right)$};
+  \\
+  
+  \draw [time] (0,0) -- (7,0);
+  \node[buffer] (0x2) at (2,0) {
+    \tikz[baseline=-1mm] \node[marble,fivestar,yellow] (x) {}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,green] (x) {}; ,
+    \tikz[baseline=-1mm] \node[marble,diamond,red] {};
+  };
+  \node[buffer] (1x2) at (5,0) {
+    \tikz[baseline=-1mm] \node[marble,fivestar,cyan] {}; ,
+    \tikz[baseline=-1mm] \node[marble,heptagon,orange] (x) {}; ,
+    \tikz[baseline=-1mm] \node[marble,pentagon,magenta] (x) {};
+  };
+  \node[complete] (2x2) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+
+\draw [rdash] (0x2) -- (0x2|-op.south);
+\draw [rdash] (1x2) -- (1x2|-op.south);
+\draw [rdash] (2x2) -- (2x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
