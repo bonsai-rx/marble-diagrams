@@ -1,0 +1,93 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \coordinate (0xS) at (0.3,0);
+  \draw [time,draw=blue] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,yellow] (1x0) at (2,0) {};
+  \node[marble,circle,green] (2x0) at (3,0) {};
+  \node[marble,circle,cyan] (3x0) at (4,0) {};
+  \node[marble,circle,blue] (4x0) at (5,0) {};
+  \node[marble,circle,magenta] (5x0) at (6,0) {};
+  \node[complete] (6x0) at (6.5,0) {};
+  \\
+  
+  \node[box,draw=blue,minimum width=7cm] (preop) {ObserveOn (
+  \begin{tikzpicture}[baseline=-1mm]
+    \node[draw=violet,minimum size=4.5mm,rtriangle,orange] (x) {};
+  \end{tikzpicture}
+  )};
+  \\
+  
+  \draw [time,color=orange] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x2) at (1,0) {};
+  \node[marble,circle,yellow] (1x2) at (2,0) {};
+  \node[marble,circle,green] (2x2) at (3,0) {};
+  \node[marble,circle,cyan] (3x2) at (4,0) {};
+  \node[marble,circle,blue] (4x2) at (5,0) {};
+  \node[marble,circle,magenta] (5x2) at (6,0) {};
+  \node[complete] (6x2) at (6.5,0) {};
+  \\
+
+  \node[box,minimum width=7cm] (op) {SubscribeOn (
+  \begin{tikzpicture}[baseline=-1mm]
+    \node[draw=black,minimum size=4.5mm,rtriangle,blue] (x) {};
+  \end{tikzpicture}
+  )};
+  \\
+
+  \coordinate (0xE) at (0.3,0);
+  \draw [time,color=orange] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x4) at (1,0) {};
+  \node[marble,circle,yellow] (1x4) at (2,0) {};
+  \node[marble,circle,green] (2x4) at (3,0) {};
+  \node[marble,circle,cyan] (3x4) at (4,0) {};
+  \node[marble,circle,blue] (4x4) at (5,0) {};
+  \node[marble,circle,magenta] (5x4) at (6,0) {};
+  \node[complete] (6x4) at (6.5,0) {};
+  \\
+};
+
+\draw [subscribe] (0xS) -- (0xS|-preop.north) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [fdash,draw=blue] (0x0) -- (0x0|-preop.north);
+\draw [fdash,draw=blue] (1x0) -- (1x0|-preop.north);
+\draw [fdash,draw=blue] (2x0) -- (2x0|-preop.north);
+\draw [fdash,draw=blue] (3x0) -- (3x0|-preop.north);
+\draw [fdash,draw=blue] (4x0) -- (4x0|-preop.north);
+\draw [fdash,draw=blue] (5x0) -- (5x0|-preop.north);
+\draw [fdash,draw=blue] (6x0) -- (6x0|-preop.north);
+
+\draw [rdash,draw=orange] (0x2) -- (0x2|-preop.south);
+\draw [rdash,draw=orange] (1x2) -- (1x2|-preop.south);
+\draw [rdash,draw=orange] (2x2) -- (2x2|-preop.south);
+\draw [rdash,draw=orange] (3x2) -- (3x2|-preop.south);
+\draw [rdash,draw=orange] (4x2) -- (4x2|-preop.south);
+\draw [rdash,draw=orange] (5x2) -- (5x2|-preop.south);
+\draw [rdash,draw=orange] (6x2) -- (6x2|-preop.south);
+
+\draw [subscribe] (0xS|-preop.south) -- (0xS|-op.north) node[above,sloped,pos=0.25] {\tiny{subscribe}};
+\draw [fdash,draw=orange] (0x2) -- (0x2|-op.north);
+\draw [fdash,draw=orange] (1x2) -- (1x2|-op.north);
+\draw [fdash,draw=orange] (2x2) -- (2x2|-op.north);
+\draw [fdash,draw=orange] (3x2) -- (3x2|-op.north);
+\draw [fdash,draw=orange] (4x2) -- (4x2|-op.north);
+\draw [fdash,draw=orange] (5x2) -- (5x2|-op.north);
+\draw [fdash,draw=orange] (6x2) -- (6x2|-op.north);
+
+\draw [subscribe,color=black] (0xE|-op.south) -- (0xE) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [rdash,draw=orange] (0x4) -- (0x4|-op.south);
+\draw [rdash,draw=orange] (1x4) -- (1x4|-op.south);
+\draw [rdash,draw=orange] (2x4) -- (2x4|-op.south);
+\draw [rdash,draw=orange] (3x4) -- (3x4|-op.south);
+\draw [rdash,draw=orange] (4x4) -- (4x4|-op.south);
+\draw [rdash,draw=orange] (5x4) -- (5x4|-op.south);
+\draw [rdash,draw=orange] (6x4) -- (6x4|-op.south);
+
+\end{tikzpicture}
+\end{document}
