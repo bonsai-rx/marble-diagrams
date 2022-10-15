@@ -1,0 +1,55 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm]
+{
+  \draw [time] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x0) at (1,0) {};
+  \node[marble,circle,yellow] (1x0) at (2,0) {};
+  \node[marble,circle,green] (2x0) at (3,0) {};
+  \node[marble,circle,cyan] (3x0) at (4,0) {};
+  \node[marble,circle,blue] (4x0) at (5,0) {};
+  \node[marble,circle,magenta] (5x0) at (6,0) {};
+  \node[complete] (6x0) at (6.5,0) {};
+  \\
+  
+  \node[box,minimum width=7cm] (op) {ObserveOn (
+  \begin{tikzpicture}[baseline=-1mm]
+    \node[draw=violet,minimum size=4.5mm,rtriangle,orange] (x) {};
+  \end{tikzpicture}
+  )};
+  \\
+  
+  \draw [time,draw=orange] (0,0) -- (7,0);
+  \node[marble,circle,red] (0x2) at (1,0) {};
+  \node[marble,circle,yellow] (1x2) at (2,0) {};
+  \node[marble,circle,green] (2x2) at (3,0) {};
+  \node[marble,circle,cyan] (3x2) at (4,0) {};
+  \node[marble,circle,blue] (4x2) at (5,0) {};
+  \node[marble,circle,magenta] (5x2) at (6,0) {};
+  \node[complete] (6x2) at (6.5,0) {};
+  \\
+};
+
+\draw [fdash] (0x0) -- (0x0|-op.north);
+\draw [fdash] (1x0) -- (1x0|-op.north);
+\draw [fdash] (2x0) -- (2x0|-op.north);
+\draw [fdash] (3x0) -- (3x0|-op.north);
+\draw [fdash] (4x0) -- (4x0|-op.north);
+\draw [fdash] (5x0) -- (5x0|-op.north);
+\draw [fdash] (6x0) -- (6x0|-op.north);
+
+\draw [rdash,draw=orange] (0x2) -- (0x2|-op.south);
+\draw [rdash,draw=orange] (1x2) -- (1x2|-op.south);
+\draw [rdash,draw=orange] (2x2) -- (2x2|-op.south);
+\draw [rdash,draw=orange] (3x2) -- (3x2|-op.south);
+\draw [rdash,draw=orange] (4x2) -- (4x2|-op.south);
+\draw [rdash,draw=orange] (5x2) -- (5x2|-op.south);
+\draw [rdash,draw=orange] (6x2) -- (6x2|-op.south);
+
+\end{tikzpicture}
+\end{document}
