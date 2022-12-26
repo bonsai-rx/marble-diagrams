@@ -15,7 +15,9 @@ The above commands are available with most common LaTeX distributions, such as [
 ## How to build (VS Code)
 
 1. Install [MiKTeX](https://miktex.org/download).
-2. Install the [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) VS Code extension.
+2. Install the [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) VS Code extension. **Note:** the Latex Workshop installation instructions recommend using TeX Live instead of MiKTeX; however, we can confirm that the marble diagrams will build with MiKTeX. This may be preferable, as Tex Live is *very* large. 
 3. Install portable [Strawberry Perl](https://strawberryperl.com/releases.html).
 4. Make sure both MiKTeX and Perl are in the system PATH.
 5. (Optional): Enable Auto-clean run setting in Latex-workshop settings.
+
+To preview .svg files in VS Code, you can use either the SVG Viewer or SVG Preview extensions (found in the VS Code Extensions Marketplace). 
