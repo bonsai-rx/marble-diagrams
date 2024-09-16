@@ -28,13 +28,6 @@
   \node[marble,circle,blue] (2x3) at (4,0) {};
   \node[complete] (3x3) at (5.25,0) {};
   \\
-  
-  \draw [time] (0,0) -- (6,0);
-  \node[marble,circle,red] (0x4) at (1.75,0) {};
-  \node[marble,circle,green] (1x4) at (2.5,0) {};
-  \node[marble,circle,blue] (2x4) at (4,0) {};
-  \node[complete] (3x4) at (5.25,0) {};
-  \\
 };
 
 \draw [fdash] (0x0) -- (0x0|-op.north);
@@ -47,12 +40,8 @@
 \draw [rdash] (2x2) -- (2x2|-op.south);
 \draw [rdash] (3x2) -- (3x2|-op.south);
 
-\draw [fdash] (0x2) -- (0x4);
-\draw [fdash] (1x2) -- (1x4);
 \draw [fdash] (2x2) -- (2x3);
-\draw [fdash] (2x3) -- (2x4);
 \draw [fdash] (3x2) -- (3x3);
-\draw [fdash] (3x3) -- (3x4);
 
 \end{tikzpicture}
 \end{document}

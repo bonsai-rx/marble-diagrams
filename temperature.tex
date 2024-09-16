@@ -1,0 +1,65 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix,backgrounds]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm] (D)
+{
+  \node[box,minimum width=4cm] (hot) {CameraCapture};
+  \node[box,minimum width=4cm] (cold) at (5,0) {FileCapture};
+  \\
+  
+  \node[below] (0xS) at (0.3,0) {\small{$t_0$}};
+  \node[below] (0xSC) at (5,0) {\small{$t_0$}};
+  \draw [time] (0,0) -- (4,0);
+  \draw [time] (5,0) -- (9,0);
+  \node[marble,hexagon,red] (0x2) at (1,0) {};
+  \node[marble,hexagon,yellow] (1x2) at (2,0) {};
+  \node[marble,hexagon,green] (2x2) at (3,0) {};
+  \node[marble,hexagon,red] (3x2) at (5.5,0) {};
+  \node[marble,hexagon,yellow] (4x2) at (6.5,0) {};
+  \node[marble,hexagon,green] (5x2) at (7.5,0) {};
+  \node[complete] (6x2) at (7.9,0) {};
+  \\
+
+  \node[below] (0xE) at (1.4,0) {\small{$t_1$}};
+  \node[below] (0xEC) at (5.75,0) {\small{$t_1$}};
+  \draw [time] (0,0) -- (4,0);
+  \draw [time] (5,0) -- (9,0);
+  \node[marble,hexagon,yellow] (1x4) at (2,0) {};
+  \node[marble,hexagon,green] (2x4) at (3,0) {};
+  \node[marble,hexagon,red] (3x4) at (6.15,0) {};
+  \node[marble,hexagon,yellow] (4x4) at (7.15,0) {};
+  \node[marble,hexagon,green] (5x4) at (8.15,0) {};
+  \node[complete] (6x4) at (8.55,0) {};
+  \\
+};
+
+\begin{scope}[on background layer]
+  \draw[dashed,gray,thick] (D.north) -- (D.south);
+\end{scope}
+
+\draw [rdash] (0x2) -- (0x2|-hot.south);
+\draw [rdash] (1x2) -- (1x2|-hot.south);
+\draw [rdash] (2x2) -- (2x2|-hot.south);
+\draw [rdash] (3x2) -- (3x2|-hot.south);
+\draw [rdash] (4x2) -- (4x2|-hot.south);
+\draw [rdash] (5x2) -- (5x2|-hot.south);
+\draw [rdash] (6x2) -- (6x2|-hot.south);
+
+\draw [subscribe] (0xS|-hot.south) -- (0xS) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+\draw [subscribe] (0xSC|-cold.south) -- (0xSC) node[above,sloped,pos=0.5] {\tiny{subscribe}};
+
+\draw [subscribe] (0xE|-hot.south) -- (0xE) node[above,sloped,pos=0.7] {\tiny{subscribe}};
+\draw [subscribe] (0xEC|-cold.south) -- (0xEC) node[above,sloped,pos=0.7] {\tiny{subscribe}};
+\draw [rdash] (1x4) -- (1x2);
+\draw [rdash] (2x4) -- (2x2);
+\draw [rdash] (3x4) -- (3x4|-cold.south);
+\draw [rdash] (4x4) -- (4x4|-cold.south);
+\draw [rdash] (5x4) -- (5x4|-cold.south);
+\draw [rdash] (6x4) -- (6x4|-cold.south);
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,64 @@
+\documentclass{standalone}
+\usepackage{tikz,rxmarbles}
+\usetikzlibrary[arrows,shapes,positioning,matrix,backgrounds]
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix[row sep=0.5cm] (D)
+{
+  \coordinate (0xS) at (0.3,0);
+  \coordinate (0xSC) at (4.3,0);
+  \node[box,minimum width=3cm] (preop) {CameraCapture};
+  \node[box,minimum width=3cm] (preopcold) at (4,0) {FileCapture};
+  \\
+  
+  \draw [time] (0,0) -- (3,0);
+  \draw [time] (4,0) -- (7,0);
+  \node[marble,hexagon,red] (0x2) at (1,0) {};
+  \node[marble,hexagon,yellow] (1x2) at (2,0) {};
+  \node[marble,hexagon,red] (4x2) at (5,0) {};
+  \node[marble,hexagon,yellow] (5x2) at (6,0) {};
+  \node[complete] (6x2) at (6.5,0) {};
+  \\
+
+  \node[box,minimum width=7cm] (op) {Grayscale};
+  \\
+
+  \coordinate (0xE) at (0.3,0);
+  \draw [time] (0,0) -- (3,0);
+  \draw [time] (4,0) -- (7,0);
+  \node[marble,hexagon] (0x4) at (1,0) {};
+  \node[marble,hexagon] (1x4) at (2,0) {};
+  \node[marble,hexagon] (4x4) at (5,0) {};
+  \node[marble,hexagon] (5x4) at (6,0) {};
+  \node[complete] (6x4) at (6.5,0) {};
+  \\
+};
+
+\begin{scope}[on background layer]
+  \draw[dashed,gray,thick] (D.north) -- (D.south);
+\end{scope}
+
+\draw [rdash] (0x2) -- (0x2|-preop.south);
+\draw [rdash] (1x2) -- (1x2|-preop.south);
+\draw [rdash] (4x2) -- (4x2|-preop.south);
+\draw [rdash] (5x2) -- (5x2|-preop.south);
+\draw [rdash] (6x2) -- (6x2|-preop.south);
+
+\draw [subscribe] (0xS|-preop.south) -- (0xS|-op.north) node[above,sloped,pos=0.57] {\scriptsize{start camera}};
+\draw [subscribe] (0xSC|-preop.south) -- (0xSC|-op.north) node[above,sloped,pos=0.52] {\scriptsize{open video}};
+\draw [fdash] (0x2) -- (0x2|-op.north);
+\draw [fdash] (1x2) -- (1x2|-op.north);
+\draw [fdash] (4x2) -- (4x2|-op.north);
+\draw [fdash] (5x2) -- (5x2|-op.north);
+\draw [fdash] (6x2) -- (6x2|-op.north);
+
+\draw [rdash] (0x4) -- (0x4|-op.south);
+\draw [rdash] (1x4) -- (1x4|-op.south);
+\draw [rdash] (4x4) -- (4x4|-op.south);
+\draw [rdash] (5x4) -- (5x4|-op.south);
+\draw [rdash] (6x4) -- (6x4|-op.south);
+
+\end{tikzpicture}
+\end{document}
